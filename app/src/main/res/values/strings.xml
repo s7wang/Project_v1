@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Project_v1</string>
+    <string name="adress">地址：</string>
+    <string name="start">开始</string>
+    <string name="stop">停止</string>
+</resources>

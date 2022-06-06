@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     private var videoEncoder: VideoEncoder? = null
     private var rtpSender = RtpSender()
-    private var videoH264Data = ByteArray(vWidth * vHeight * 3)
+    //private var videoH264Data = ByteArray(vWidth * vHeight * 3)
 
     private var cameraState = STOP_STATE
     private var isRun: Boolean = false
@@ -145,6 +145,19 @@ class MainActivity : AppCompatActivity() {
                 rtpSender.setAddress(IP, port)
                 rtpSender.start()
                 sendController.start()
+                /** 循环调节码率 **/
+                Thread {
+                    var i = 0
+                    var n = intArrayOf(5_000, 50_000, 500_000, 5_000_000)
+                    while (isRun) {
+                        i = (i+1) % 4
+                        videoEncoder!!.changeBitRate(n[i])
+
+                        Thread.sleep(20_000)
+                        Log.e(TAG, "changeBitRate n = ${n[i]}")
+                    }
+                }.start()
+
                 cameraState = START_STATE
 
             } else { /** 停止 **/

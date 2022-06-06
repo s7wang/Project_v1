@@ -78,7 +78,7 @@ class RtpSender: SendInfo, SendControl, RtpPacketEncode.H264ToRtpListener{
                     lock.lock()
                     queueByteSize -= data.size
                     lock.unlock()
-                    Log.i(TAG, "h264ToRtpResponse send size ${data.size}")
+                    Log.i(TAG, "++++ h264ToRtpResponse send size ${data.size} ++++")
                 }
             }
             Log.e(TAG, "sendThread over")

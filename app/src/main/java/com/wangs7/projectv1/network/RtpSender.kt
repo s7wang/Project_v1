@@ -52,7 +52,9 @@ class RtpSender: SendInfo, SendControl, RtpPacketEncode.H264ToRtpListener{
 
     fun start() {
         isRunning = true
-        Thread(sendThread).start()
+        var t = Thread(sendThread)
+        t.priority = 10
+        t.start()
     }
 
 

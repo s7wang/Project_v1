@@ -16,7 +16,9 @@ class SendController {
     private var socket : UdpSocket? = null
 
     private var isRunning = false
+
     private val receiveThread:Runnable = Runnable {
+        Log.e(TAG, "receiveThread ++++++++++++++++++++++++++++")
         while (isRunning) {
             if (socket == null) {
                 Log.e(TAG, "receiveThread socket == null")
@@ -43,15 +45,16 @@ class SendController {
                 var loss_n = buffer.getInt(12)
                 var loss_b = buffer.getInt(16)
                 var srcSq = buffer.getShort(20)
-                Log.i(TAG,"=========== seq = ${sn}  TimeStamp = ${ts}  DeltaT = ${dt}  loss = ${loss_n*1.0/loss_b}  srcSq = ${srcSq}===========")
+                Log.e(TAG,"=========== seq = ${sn}  TimeStamp = ${ts}  DeltaT = ${dt}  loss = ${loss_n*1.0/loss_b}  srcSq = ${srcSq}===========")
             }
         }
     }
 
     fun start() {
+        Log.e(TAG,"===========START===========")
         isRunning = true
         var t = Thread(receiveThread)
-        t.priority = 9
+        //t.priority = 9
         t.start()
     }
     fun stop() {

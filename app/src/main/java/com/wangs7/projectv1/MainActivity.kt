@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                         Thread.sleep(20_000)
                         Log.e(TAG, "changeBitRate n = ${n[i]}")
                     }
-                }.start()
+                }//.start()
 
                 cameraState = START_STATE
 
@@ -296,8 +296,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private var TAG = MainActivity::class.java.simpleName
         private const val mWidth = 720
-        private const val mHeight = 540
-
+        private const val mHeight = 480//540
+//        private const val mWidth = 1440
+//        private const val mHeight = 1080//540
         private const val START_STATE = 0
         private const val STOP_STATE = 1
         private const val PAUSE_STATE = 2

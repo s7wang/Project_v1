@@ -15,6 +15,8 @@ object ImageUtil {
     const val YUV420SP = 1
     const val NV21 = 2
     private  val TAG = ImageUtil::class.java.simpleName
+    private var w = 0
+    private var h = 0
 
     fun getBytesFromImageAsType(image: Image?, type: Int): ByteArray? {
         try {
@@ -23,9 +25,16 @@ object ImageUtil {
 
             //Data effective width, in general, image width <= rowStride, which is also the reason for byte []. Length <= capacity
             // So we only take the width part
+
+            if (w != image.width || h != image.height) {
+                Log.i(TAG, "image width = " + image.width + "; image height = " + image.height)
+                w = image.width
+                h = image.height
+            }
+
             val width = image.width
             val height = image.height
-            Log.i(TAG, "image width = " + image.width + "; image height = " + image.height)
+
 
             //This is used to fill the final YUV data, which requires 1.5 times the picture size, because the YUV ratio is 4: 1: 1
             val yuvBytes =

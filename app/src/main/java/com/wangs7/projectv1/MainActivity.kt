@@ -145,6 +145,7 @@ class MainActivity : AppCompatActivity() {
                 rtpSender.setAddress(IP, port)
                 rtpSender.start()
                 sendController.start()
+
                 /** 循环调节码率 **/
                 Thread {
                     var i = 0

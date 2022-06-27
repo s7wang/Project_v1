@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock
  * @description:
  * @date: 2022/3/29 1:29
  **/
-class RtpSender: SendInfo, SendControl, RtpPacketEncode.H264ToRtpListener{
+class RtpSender: SendInfo, RtpPacketEncode.H264ToRtpListener{
 
 
     private var socket: UdpSocket? = null
@@ -115,8 +115,5 @@ class RtpSender: SendInfo, SendControl, RtpPacketEncode.H264ToRtpListener{
         }
     }
 
-    /** 未实现 **/
-    override fun updateSendControl() {
-        var remainBuffer = sendQueue.remainingCapacity()
-    }
+
 }
